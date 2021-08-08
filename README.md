@@ -66,12 +66,14 @@ Click on the cell to specify the range, click on the "Insert" button in the sear
 <img src="https://github.com/bigbio/proma/blob/main/figures/figure_6.png" width="600">
 </div>
 <br/>
+
 ### Record
 
 <div align="center">
 <img src="https://github.com/bigbio/proma/blob/main/figures/figure_7.png" width="600">
 </div>
 <br/>
+
 When you insert, a 'Record' sheet will be added automatically. This sheet will have the following column headers:
 ```Parameter Type | Parameter Value | Term Name | Ontology Source | Term URI```. This is how we record your inserts.
 

@@ -5,12 +5,12 @@
 <br/>
 
 <br/>
-PROMA is a proteome metadata annotator based on the [OntoMaton](https://github.com/ISA-tools/OntoMaton) tool. We have retained the original functionality of OntoMaton and added the ability to retrieve ontology and annotate the [SDRF-Proteomics](https://github.com/bigbio/proteomics-metadata-standard/tree/master/sdrf-proteomics) in Google Spreadsheet.
+PROMA is a proteome metadata annotator based on the <a href="https://github.com/ISA-tools/OntoMaton">OntoMaton</a> tool. We have retained the original functionality of OntoMaton and added the ability to retrieve ontology and annotate the <a href="https://github.com/bigbio/proteomics-metadata-standard/tree/master/sdrf-proteomics">SDRF-Proteomics</a> in Google Spreadsheet.
 
 <br/>
 
 ### Function Introduction
-PROMA is powered by the<a href="https://www.ebi.ac.uk/ols/index">EBI Ontology Lookup Service</a>, which greatly improves the efficiency of completing SDRF-Proteomics files.
+PROMA is powered by the <a href="https://www.ebi.ac.uk/ols/index">EBI Ontology Lookup Service</a>, which greatly improves the efficiency of completing SDRF-Proteomics files.
 
 The current version of PROMA has the following features:
 

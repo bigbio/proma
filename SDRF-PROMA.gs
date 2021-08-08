@@ -1,5 +1,5 @@
-function showSDRFAnnotate() {
-    var html = HtmlService.createHtmlOutputFromFile('SDRF-Annotate-Template')
+function showPROMA() {
+    var html = HtmlService.createHtmlOutputFromFile('SDRF-PROMA-Template')
       .setTitle('OntoMaton - Ontology Search & Tagging')
       .setWidth(300);
 

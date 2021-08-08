@@ -4,7 +4,7 @@ function onOpen() {
       .addItem('Ontology Search', 'showOntologySearch')
       .addItem('Ontology Annotator', 'showAnnotator')
       .addSeparator()
-      .addItem('SDRF Annotate','showSDRFAnnotate')
+      .addItem('PROMA','showPROMA')
       .addSeparator()
       .addItem('Settings', 'showSettings')
       .addItem('About', 'showAbout')

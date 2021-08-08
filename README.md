@@ -1,5 +1,5 @@
 <div align="center">
-<img src="http://isatab.sf.net/assets/img/tools/ontomaton.png" align="center"/>            
+<img src="https://github.com/bigbio/proma/tree/main/figures/logo.png" align="center"/>            
 </div>
 
 <br/>

@@ -29,7 +29,7 @@ To try PROMA, you first need to download all the [files](https://github.com/bigb
 2. First, run "ontomaton.gs" which will add the plugin's menu bar to the table to enable the different functions: 
 
 <div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/figure_2.png" height="600">
+<img src="https://github.com/bigbio/proma/blob/main/figures/figure_2.png" width="600">
 </div>
 <br/>
 

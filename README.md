@@ -25,7 +25,7 @@ To try PROMA, you first need to download all the [files](https://github.com/bigb
 1. To add Script and HTML to the Script editor in Google Spreadsheet, grant proper permissions before using them: 
 
 <div align="center">
-<img src="https://github.com/bigbio/proma/tree/main/figures/figure_1.png" width=100%>
+<img src="https://github.com/bigbio/proma/tree/main/figures/figure_1.png" width="500">
 </div>
 
 2. First, run "ontomaton.gs" which will add the plugin's menu bar to the table to enable the different functions: 

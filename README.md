@@ -66,7 +66,6 @@ Click on the cell to specify the range, click on the "Insert" button in the sear
 <img src="https://github.com/bigbio/proma/blob/main/figures/figure_6.png" width="600">
 </div>
 <br/>
-
 ### Record
 
 <div align="center">

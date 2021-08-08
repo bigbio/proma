@@ -90,7 +90,7 @@ PROMA templates are [here](https://github.com/bigbio/proteomics-metadata-standar
 
 ### Questions
 
-If you have any queries, please email us at [link](mailto:isatools@googlegroups.com). For bug reports, please [use the issue page here](https://github.com/bigbio/proma/issues).
+If you have any queries, please email us at [link](). For bug reports, please [use the issue page here](https://github.com/bigbio/proma/issues).
 
 ### License
 

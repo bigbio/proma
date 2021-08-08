@@ -25,18 +25,21 @@ To try PROMA, you first need to download all the [files](https://github.com/bigb
 <img src="https://github.com/bigbio/proma/blob/main/figures/figure_1.png" width="800">
 </div>
 <br/>
+
 2. First, run "ontomaton.gs" which will add the plugin's menu bar to the table to enable the different functions: 
 
 <div align="center">
 <img src="https://github.com/bigbio/proma/blob/main/figures/figure_2.png" height="200">
 </div>
 <br/>
+
 You should get the following result:
 
 <div align="center">
 <img src="https://github.com/bigbio/proma/blob/main/figures/figure_3.png" width="500">
 </div>
 <br/>
+
 ### Select Template
 
 If the properties of the first row have been correctly filled in, skip this step.
@@ -47,6 +50,7 @@ Select a template and click the "Apply" button. You should get the following res
 <img src="https://github.com/bigbio/proma/blob/main/figures/figure_4.png" width="800">
 </div>
 <br/>
+
 ### SDRF Annotation
 
 We searched Ontology information through [EBI Ontology Lookup Service](https://www.ebi.ac.uk/ols/), and sorted the label and obo_id in the returned information into the form of key-value pairs.When searching for modification parameters, we recommend modifying all parameters. To search for other types, just type NT or AC.
@@ -55,12 +59,14 @@ We searched Ontology information through [EBI Ontology Lookup Service](https://w
 <img src="https://github.com/bigbio/proma/blob/main/figures/figure_5.png" width="700">
 </div>
 <br/>
+
 Click on the cell to specify the range, click on the "Insert" button in the search results, and you'll get something like this:
 
 <div align="center">
 <img src="https://github.com/bigbio/proma/blob/main/figures/figure_6.png" width="600">
 </div>
 <br/>
+
 ### Record
 
 <div align="center">

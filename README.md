@@ -16,7 +16,7 @@ The current version of PROMA has the following features:
 
 - <b>Insert a template: </b>we provide [6 templates](https://github.com/bigbio/proteomics-metadata-standard/tree/master/templates) according to species classification, including cell-line, default, human, nonvertebrates, plants, and vertebrates. Note that each application of the template overwrites the first line of the current sheet.
 - <b>Insert related parameters: </b>we organised the searched ontology information into the form of key-value pairs, with four parameters in total: modification parameters, instrument, cleavage agent details and label.
-- <b>Record</b>add a sheet named Record to record the parameter information searched and inserted.
+- <b>Record: </b>add a sheet named Record to record the parameter information searched and inserted.
 
 ### Installation
 

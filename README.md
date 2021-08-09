@@ -66,7 +66,7 @@ We searched Ontology information through [EBI Ontology Lookup Service](https://w
 Click on the cell to specify the range, click on the "Insert" button in the search results, and you'll get something like this:
 
 <div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/figure_6.png" width="600">
+<img src="https://github.com/bigbio/proma/blob/main/figures/figure_6.png" width="800">
 </div>
 <br/>
 

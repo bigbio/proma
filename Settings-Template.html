@@ -26,7 +26,10 @@
             padding: 10px;
             font-weight: bolder;
         }
-
+        .proma-header {
+            padding-top: 5px;
+            height: 75px;
+        }
         .btn-green {
             text-align: center;
             padding: 5px 8px;
@@ -57,7 +60,7 @@
     <script>
 
         var ontologies = {};
-        var selectedOntologyService = 'BioPortal';
+        var selectedOntologyService = 'OLS';
 
         $(function () {
             google.script.run.withSuccessHandler(setOntologies)
@@ -101,10 +104,6 @@
             });
         }
 
-        function updateRestrictionsList() {
-            selectedOntologyService = $('#service').val();
-            renderRestrictions();
-        }
 
         function showAddRestrictionStatus(callback) {
             $('#info').removeClass('hidden');
@@ -139,8 +138,8 @@
 </head>
 
 <body>
-    <div align="center">
-        <img src="https://isa-tools.org/OntoMaton/figures/ontomaton-settings.png" width="95%" />
+    <div class="proma-header" align="center">
+        <img src="https://raw.githubusercontent.com/bigbio/proma/main/figures/logo_with_name.png" width="225" height="60">
     </div>
     <br /><br />
     <div align="left" id="options">
@@ -177,17 +176,6 @@
     </div>
 
     <div id="restrictions" class="restrictions hidden">
-
-        <div>
-            <p style="font-weight: bolder">Ontology Service</p>
-
-            <select id="service" name="service" onchange="updateRestrictionsList()" style="width: 100%;">
-                <option value="BioPortal" selected>Bioportal</option>
-                <option value="LOV">LOV</option>
-                <option value="OLS">OLS</option>
-            </select>
-        </div>
-        <br />
 
         <form id="ontologySelectionForm" onsubmit="addRestriction(this)">
             <div>

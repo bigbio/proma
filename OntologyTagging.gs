@@ -32,7 +32,7 @@
 
 function showAnnotator() {
     var html = HtmlService.createHtmlOutputFromFile('Annotator-Template')
-      .setTitle('OntoMaton - Ontology Search & Tagging')
+      .setTitle('PROMA - Ontology Search & Tagging')
       .setWidth(300);
   
     SpreadsheetApp.getUi()
@@ -41,6 +41,33 @@ function showAnnotator() {
 
 function runAnnotator() {
   return performAnnotation();
+}
+
+function getBioPortalOntologies() {
+
+    var searchString = "http://data.bioontology.org/ontologies?apikey=fd88ee35-6995-475d-b15a-85f1b9dd7a42&display_links=false&display_context=false";
+
+    // we cache results and try to retrieve them on every new execution.
+    var cache = CacheService.getPrivateCache();
+
+    var text;
+
+    if (cache.get("bioportal_fragments") == null) {
+        text = UrlFetchApp.fetch(searchString).getContentText();
+        splitResultAndCache(cache, "bioportal_fragments", text);
+    } else {
+        text = getCacheResultAndMerge(cache, "bioportal_fragments");
+    }
+    var doc = JSON.parse(text);
+    var ontologies = doc;
+
+    var ontologyDictionary = {};
+    for (ontologyIndex in doc) {
+        var ontology = doc[ontologyIndex];
+      ontologyDictionary[ontology.acronym] = {"name":ontology.name, "uri":ontology["@id"]};
+    }
+
+    return ontologyDictionary;
 }
 
 function performAnnotation() {

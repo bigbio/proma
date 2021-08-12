@@ -33,7 +33,7 @@
 function showAbout() {
 
     var html = HtmlService.createHtmlOutputFromFile('About-Template')
-      .setTitle('OntoMaton - Ontology Search & Tagging')
+      .setTitle('PROMA - Ontology Search & Tagging')
       .setWidth(300);
   
     SpreadsheetApp.getUi()

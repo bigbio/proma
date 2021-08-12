@@ -58,7 +58,7 @@
             top: 3px;
         }
 
-        .ontomaton-header {
+        .proma-header {
             padding-top: 5px;
             height: 75px;
         }
@@ -81,6 +81,7 @@
 
         .logo {
             vertical-align: middle;
+            width: 175px;
         }
 
         .pull-left {
@@ -236,8 +237,8 @@
 
 <body>
 
-    <div class="ontomaton-header">
-        <img src="//isa-tools.org/OntoMaton/figures/ontomaton-tagging.png" />
+    <div class="proma-header" align="center">
+        <img src="https://raw.githubusercontent.com/bigbio/proma/main/figures/logo_with_name.png" width="225" height="60">
     </div>
     <div class="block" id="button-bar" style="margin-top:20px">
 
@@ -253,10 +254,10 @@
     </div>
 
 
-    <div class="footer">
-        <img alt="Add-on logo" class="logo" src="//isa-tools.org/wp-content/themes/isatools-wp-theme/img/footer_logo.svg"><br />
-        <span class="gray branding-text">Created by the <a href="http://isa-tools.org" target="_blank">ISA tools</a>
-            team</span>
+    <div class="footer" align="center">
+        <img alt="Add-on logo" class="logo" src="//isa-tools.org/OntoMaton/figures/ontomaton-search.png"><br />
+        <span class="gray branding-text">Powered by <a href="http://isa-tools.org/OntoMaton" target="_blank">OntoMaton</a>
+        </span>
     </div>
 
 
@@ -318,6 +319,7 @@
 
                         var html = '<div id="result-accordion" class="accordion">';
                         var count = 0
+                        console.log(result);
                         Object.keys(result).forEach(function(term_key) {
                             html += '<h3 onclick="toggle(\'results-' + count + '\')"><span id="expand-icon-results-' + count + '" class="entypo-plus expand-icon" style="font-size: 1.2em"> </span><span class="freetext-term">' + term_key + '</span> - <span class="ontology-name">Results from ' + Object.keys(result[term_key]["results"]).length + ' ontologies.</span></h3>' +
                                 '<div class="annotator-results hidden" id="results-' + count + '">';

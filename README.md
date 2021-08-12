@@ -57,7 +57,7 @@ Here you can click on the image and read more about Proma:
 </div>
 <br/>
 
-4. You'll then have the OntoMaton app installed.
+4. You'll then have the Proma app installed.
 
 <div align="center">
 <img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_6.png" width="600">

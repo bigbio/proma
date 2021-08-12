@@ -33,15 +33,13 @@
 
 
 function showSettings() {
-    var html = HtmlService.createHtmlOutputFromFile('Settings-Template').setTitle('OntoMaton - Ontology Search & Tagging').setWidth(300);
+    var html = HtmlService.createHtmlOutputFromFile('Settings-Template').setTitle('PROMA - Ontology Search & Tagging').setWidth(300);
     createSettingsTab();
     SpreadsheetApp.getUi().showSidebar(html);
 }
 
 function loadOntologies() { 
     return {
-        'BioPortal': getBioPortalOntologies(),
-        'LOV': getLinkedOpenVocabularies(),
         'OLS': getOLSOntologies()
     }
 }
@@ -117,57 +115,6 @@ function setOntologyInsertionPreference(insertSingleColumn) {
     settingsSheet.getRange("B1").setValue(insertSingleColumn);
 }
 
-
-function getBioPortalOntologies() {
-
-    var searchString = "http://data.bioontology.org/ontologies?apikey=fd88ee35-6995-475d-b15a-85f1b9dd7a42&display_links=false&display_context=false";
-
-    // we cache results and try to retrieve them on every new execution.
-    var cache = CacheService.getPrivateCache();
-
-    var text;
-
-    if (cache.get("bioportal_fragments") == null) {
-        text = UrlFetchApp.fetch(searchString).getContentText();
-        splitResultAndCache(cache, "bioportal_fragments", text);
-    } else {
-        text = getCacheResultAndMerge(cache, "bioportal_fragments");
-    }
-    var doc = JSON.parse(text);
-    var ontologies = doc;
-
-    var ontologyDictionary = {};
-    for (ontologyIndex in doc) {
-        var ontology = doc[ontologyIndex];
-      ontologyDictionary[ontology.acronym] = {"name":ontology.name, "uri":ontology["@id"]};
-    }
-
-    return ontologyDictionary;
-}
-
-function getLinkedOpenVocabularies(){
-
-  var vocabsURL = "http://lov.okfn.org/dataset/lov/api/v2/vocabulary/list";
-  var cache = CacheService.getPrivateCache();
-
-  if (cache.get("lov_fragments") == null) {
-     var vocabsResponse = UrlFetchApp.fetch(vocabsURL);
-     var text = vocabsResponse.getContentText();
-     splitResultAndCache(cache, "lov", text);
-  } else {
-     text = getCacheResultAndMerge(cache, "lov");
-  }
-
-  vocabularies = JSON.parse(text);
-
-  var vocabularyDictionary = {};
-  for (vocabularyIndex in vocabularies) {
-    var vocabulary = vocabularies[vocabularyIndex];
-    vocabularyDictionary[vocabulary.prefix] = {"name":vocabulary.titles[0].value, "uri":vocabulary.uri};
-  }
-
-  return vocabularyDictionary;
-}
 
 /**
  * @method

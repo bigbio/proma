@@ -1,6 +1,6 @@
 function onOpen() {
   SpreadsheetApp.getUi() 
-      .createMenu('OntoMaton')
+      .createMenu('Proma')
       .addItem('Ontology Search', 'showOntologySearch')
       .addItem('Ontology Annotator', 'showAnnotator')
       .addSeparator()

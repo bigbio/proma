@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/logo_with_name.png" width="100">
+<img src="https://github.com/bigbio/proma/blob/main/figures/logo_with_name.png" width="300">
 </div>
 
 <br/>
@@ -121,7 +121,7 @@ PROMA templates are [here](https://github.com/bigbio/proteomics-metadata-standar
 
 ### Questions
 
-If you have any queries, please email us at [link](). For bug reports, please [use the issue page here](https://github.com/bigbio/proma/issues).
+For bug reports, please [use the issue page here](https://github.com/bigbio/proma/issues).
 
 ### License
 

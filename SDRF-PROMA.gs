@@ -1,6 +1,6 @@
 function showPROMA() {
     var html = HtmlService.createHtmlOutputFromFile('SDRF-PROMA-Template')
-      .setTitle('OntoMaton - Ontology Search & Tagging')
+      .setTitle('PROMA - Ontology Search & SDRF Anotate')
       .setWidth(300);
 
     SpreadsheetApp.getUi()

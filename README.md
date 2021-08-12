@@ -133,13 +133,13 @@ With Proma, you can select a number of spreadsheet cells and then 'tag' them. Th
 
 
 <div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_14.png" width="400">
+<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_14.png" width="300">
 </div>
 
 From the settings screen, you can configure:
 
 * How terms should be inserted in to the spreadsheet when not in 'ISA mode' (where the next columns aren't named 'Term Source REF' or 'Term Source Accession'). The two options are as either as a hyperlink to the term in Bioportal/OLS/LOV or as a term name with the hyperlink in parentheses.  
-* Restrictions, which specify for zero or more columns (with a name in the first cell), restrictions that should be placed on the search space per each of the ontology lookup services we use (Bioportal/OLS/LOV) E.g. the column 'Label' is restricted to terms from the Chemincal Entities of Biomedical Interest ontology (ChEBI). 
+* Restrictions, which specify for zero or more columns (with a name in the first cell), restrictions that should be placed on the search space per each of the ontology lookup services we use (Bioportal/OLS) E.g. the column 'Label' is restricted to terms from the Chemincal Entities of Biomedical Interest ontology (ChEBI). 
 
 When you add a restriction using the 'Settings' panel for the first time, a 'Restrictions' sheet will be added automatically. This sheet will have the following column headers:
 ```Column Name | Ontology |	 Branch | Version | Ontology Name | Service```. Then you may define for a particular column header in your spreadsheet what ontology should be searched (or list of ontologies) over what service (BioPortal or OLS). A restriction will only apply if using the corresponding service for search. 

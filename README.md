@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/logo_small_icon_only_inverted.png" width="100">
+<img src="https://github.com/bigbio/proma/blob/main/figures/logo_with_name.png" width="100">
 </div>
 
 <br/>
@@ -20,26 +20,54 @@ The current version of PROMA has the following features:
 
 ### Installation
 
-To try PROMA, you first need to download all the [files](https://github.com/bigbio/proma) we provide with the suffix ".gs "and".html ".
+To try PROMA, you need to add the extension to your Google spreadsheet. The following steps will make it easy.
 
-1. To add Script and HTML to the Script editor in Google Spreadsheet, grant proper permissions before using them: 
+1. Click on the 'Add-ons' menu item in your Google Spreadsheet:
 
 <div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/figure_1.1.png" width="800">
+<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_1.png" width="600">
 </div>
 <br/>
 
-2. First, run "ontomaton.gs" which will add the plugin's menu bar to the table to enable the different functions: 
+2. Click on 'Get add-ons...' and then search for 'Proma':
 
 <div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/figure_2.1.png" width="600">
+<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_2.png" width="600">
 </div>
 <br/>
 
 You should get the following result:
 
 <div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/figure_3.png" width="500">
+<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_3.png" width="600">
+</div>
+<br/>
+
+Here you can click on the image and read more about Proma:
+
+<div align="center">
+<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_4.png" width="600">
+</div>
+<br/>
+
+3. To install, click on '+FREE'. You will need to authorise Proma Add-on to access your spreadsheets and to connect to external services:
+
+<div align="center">
+<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_5.png" width="600">
+</div>
+<br/>
+
+4. You'll then have the OntoMaton app installed.
+
+<div align="center">
+<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_6.png" width="600">
+</div>
+<br/>
+
+You can access it through the 'Add On' menu option.
+
+<div align="center">
+<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_7.png" width="600">
 </div>
 <br/>
 
@@ -50,7 +78,7 @@ If the properties of the first row have been correctly filled in, skip this step
 Select a template and click the "Apply" button. You should get the following results:
 
 <div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/figure_4.png" width="1000">
+<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_8.png" width="1000">
 </div>
 <br/>
 
@@ -59,33 +87,33 @@ Select a template and click the "Apply" button. You should get the following res
 We searched Ontology information through [EBI Ontology Lookup Service](https://www.ebi.ac.uk/ols/), and sorted the label and obo_id in the returned information into the form of key-value pairs.When searching for modification parameters, we recommend modifying all parameters. To search for other types, just type NT or AC.
 
 <div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/figure_5.png" width="700">
+<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_9.png" width="700">
 </div>
 <br/>
 
 Click on the cell to specify the range, click on the "Insert" button in the search results, and you'll get something like this:
 
 <div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/figure_6.png" width="800">
+<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_10.png" width="800">
 </div>
 <br/>
 
 ### Record
 
 <div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/figure_7.png" width="600">
+<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_11.png" width="600">
 </div>
 <br/>
 
 When you insert, a 'Record' sheet will be added automatically. This sheet will have the following column headers:
 ```Parameter Type | Parameter Value | Term Name | Ontology Source | Term URI```. This is how we record your inserts.
 
-An example of a google spreadsheet with such functionality can be viewed here: https://docs.google.com/spreadsheets/d/1JWgX4zk7Gd8MVBYtIsgwjapB0rEtj4luDOxbqrp0hdA/edit#gid=346618126
+An example of a google spreadsheet with such functionality can be viewed here: https://docs.google.com/spreadsheets/d/1kg043sFW2-hkWD7u_0tT2KbG7d0HqftTkULo5kYvJrw/edit#gid=1973647948
 
  
 ### Video Tutorial
 
-Access the video tutorial showing how to install and use PROMA [here](http://www.youtube.com/watch?v=Qs0nxGBfQac&feature=player_embedded).
+Access the video tutorial showing how to install and use PROMA [here](https://www.youtube.com/watch?v=wbX4iSb4H9M&list=PLQVvhMGFuG46d96tzZNsOSwwdzfJKpYZA).
  
 ### Templates
 

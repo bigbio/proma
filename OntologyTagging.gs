@@ -1,35 +1,3 @@
-// OntoMaton is a component of the ISA software suite (http://www.isa-tools.org)
-//
-// License:
-// OntoMaton is licensed under the Common Public Attribution License version 1.0 (CPAL)
-//
-// EXHIBIT A. CPAL version 1.0
-// “The contents of this file are subject to the CPAL version 1.0 (the “License”);
-// you may not use this file except in compliance with the License. You may obtain a
-// copy of the License at http://isatab.sf.net/licenses/OntoMaton-license.html.
-// The License is based on the Mozilla Public License version 1.1 but Sections
-// 14 and 15 have been added to cover use of software over a computer network and
-// provide for limited attribution for the Original Developer. In addition, Exhibit
-// A has been modified to be consistent with Exhibit B.
-//
-// Software distributed under the License is distributed on an “AS IS” basis,
-// WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
-// the specific language governing rights and limitations under the License.
-//
-// The Original Code is OntoMaton.
-// The Original Developer is the Initial Developer. The Initial Developer of the
-// Original Code is the ISA Team (Eamonn Maguire, eamonnmag@gmail.com;
-// Philippe Rocca-Serra, proccaserra@gmail.com; Susanna-Assunta Sansone, sa.sanson@gmail.com; Alejandra Gonzalez-Beltran, alejandra.gonzalez.beltran@gmail.com
-// http://www.isa-tools.org). All portions of the code written by the ISA Team are
-// Copyright (c) 2007-2020 ISA Team. All Rights Reserved.
-//
-// EXHIBIT B. Attribution Information
-// Attribution Copyright Notice: Copyright (c) 2007-2020 ISA Team
-// Attribution Phrase: Developed by the ISA Team
-// Attribution URL: http://www.isa-tools.org
-// Graphic Image provided in the Covered Code as file: http://isatab.sf.net/assets/img/tools/ontomaton-part-of-isatools.png
-// Display of Attribution Information is required in Larger Works which are defined in the CPAL as a work which combines Covered Code or portions thereof with code not governed by the terms of the CPAL.
-
 function showAnnotator() {
     var html = HtmlService.createHtmlOutputFromFile('Annotator-Template')
       .setTitle('PROMA - Ontology Search & Tagging')
@@ -43,128 +11,95 @@ function runAnnotator() {
   return performAnnotation();
 }
 
-function getBioPortalOntologies() {
-
-    var searchString = "http://data.bioontology.org/ontologies?apikey=fd88ee35-6995-475d-b15a-85f1b9dd7a42&display_links=false&display_context=false";
-
-    // we cache results and try to retrieve them on every new execution.
-    var cache = CacheService.getPrivateCache();
-
-    var text;
-
-    if (cache.get("bioportal_fragments") == null) {
-        text = UrlFetchApp.fetch(searchString).getContentText();
-        splitResultAndCache(cache, "bioportal_fragments", text);
-    } else {
-        text = getCacheResultAndMerge(cache, "bioportal_fragments");
-    }
-    var doc = JSON.parse(text);
-    var ontologies = doc;
-
-    var ontologyDictionary = {};
-    for (ontologyIndex in doc) {
-        var ontology = doc[ontologyIndex];
-      ontologyDictionary[ontology.acronym] = {"name":ontology.name, "uri":ontology["@id"]};
-    }
-
-    return ontologyDictionary;
-}
-
 function performAnnotation() {
     try {
         var sheet = SpreadsheetApp.getActiveSheet();
         var selectedRange = SpreadsheetApp.getActiveRange();
         
-        var restriction = findRestrictionForCurrentColumn("BioPortal");
-
-        var valuesToSend = {};
+        var restriction = findRestrictionForCurrentColumn("OLS");
+      
+        var valuesToSend = {};                                                                                               
         for (var rowIndex = selectedRange.getRow(); rowIndex <= selectedRange.getLastRow(); rowIndex++) {
             for (var columnIndex = selectedRange.getColumn(); columnIndex <= selectedRange.getLastColumn(); columnIndex++) {
                 var value = sheet.getRange(rowIndex, columnIndex).getValue();
                 if (valuesToSend[value] == undefined) {
                     valuesToSend[value] = new Object();
-                }
+                }                                                                                                            
             }
         }
 
         var valuesToTag = "";
         for (var valueToTag in valuesToSend) {
 
-            valuesToTag += valueToTag + " ";
+            valuesToTag += valueToTag + " ";                                                                                 
             valuesToSend[valueToTag].from = valuesToTag.indexOf(valueToTag);
-            valuesToSend[valueToTag].to = valuesToSend[valueToTag].from + valueToTag.length;
+            valuesToSend[valueToTag].to = valuesToSend[valueToTag].from + valueToTag.length;                                 
+        
+ 
+            var url = 'http://www.ebi.ac.uk/ols/api/search';
+           
+            var queryObj =
+            {
+                q: valueToTag,
+                rows: OLS_PAGINATION_SIZE,
+                start: 0,
+                ontology: restriction ? restriction.ontologyId : undefined,
+                exact: true
+            };
+            var queryString = jsonToQueryString(queryObj);                                   
+            url += '?' + queryString;                                                        
+
+            var result = UrlFetchApp.fetch(url).getContentText();
+
+            var ontologies = getOLSOntologies();
+
+            var json = JSON.parse(result), ontologyDict = {};
+            var docs = json.response && json.response.docs;                                  
+            if (!docs || docs.length === 0) {
+            throw "No Result found.";
+            }
+            var valueToAnnotatorResult = valuesToSend[valueToTag];
+                
+                if (valueToAnnotatorResult.results == undefined) {
+                    valueToAnnotatorResult.results = {};
+                }
+            docs.forEach(function(elem) {
+              
+                var ontologyAbbreviation = elem.ontology_prefix;
+                
+                
+                if (valueToAnnotatorResult.results[ontologyAbbreviation] == undefined) {
+                    valueToAnnotatorResult.results[ontologyAbbreviation] = {"ontology-name": elem.ontology_name, "terms": []};
+                }
+                var record;
+                record = {
+                        label: elem.label,
+                        id: elem.id,
+                        'ontology-label': elem.ontology_prefix,
+                        'ontology-name': elem.ontology_name,
+                        'ontology-obo_id': elem.obo_id,
+                        accession: elem.iri,
+                        ontology: elem.ontology_name,
+                        details: '',
+                        url: elem.iri,
+                        "freeText": valueToTag
+                        };
+      
+                storeInCache(record.id, JSON.stringify(record)); 
+                valueToAnnotatorResult.results[ontologyAbbreviation].terms.push(record);   
+            });   
+              
+            
+            
         }
         
-        if (valuesToTag.trim() != "") {
-            var payload =
-            {
-                "apikey": "fd88ee35-6995-475d-b15a-85f1b9dd7a42",
-                "withSynonyms": "true",
-                "wholeWords": "true",
-                "include": "prefLabel",
-                "text": valuesToTag
-            };
-            
-            if (restriction) {
-                payload["ontologies"] = restriction.ontologyId;
-            }
-
-            var options =
-            {
-                "method": "post",
-                "payload": payload
-            };
-
-            var result = UrlFetchApp.fetch("http://data.bioontology.org/annotator", options).getContentText();
-
-            var ontologies = getBioPortalOntologies();
-
-            var doc = JSON.parse(result, true);
-
-            for (var annotation in doc) {
-                var annotationResult = doc[annotation].annotatedClass;
-                var concept = annotationResult.prefLabel;
-
-                var ontologyId = annotationResult.links.ontology;
-
-                var ontologyAbbreviation = annotationResult.links.ontology.substring(annotationResult.links.ontology.lastIndexOf("/") + 1);
-                var ontologyName = ontologies[ontologyAbbreviation].name;
-
-                if (ontologyId != undefined) {
-                    // add each result to an object in valuesToSend dictionary. We'll use this to build the tree.
-                    for (var originalTerm in valuesToSend) {
-                        for (var annotationIndex in doc[annotation].annotations) {
-                            var annotationDetails = doc[annotation].annotations[annotationIndex];
-                            if (originalTerm.indexOf(valuesToTag.substring(annotationDetails.from, annotationDetails.to)) != -1) {
-                                var valueToAnnotatorResult = valuesToSend[originalTerm];
-
-                                if (valueToAnnotatorResult.results == undefined) {
-                                    valueToAnnotatorResult.results = {};
-                                }
-
-                                if (valueToAnnotatorResult.results[ontologyAbbreviation] == undefined) {
-                                    valueToAnnotatorResult.results[ontologyAbbreviation] = {"ontology-name": ontologyName, "terms": []};
-                                }
-
-                              var ontology_record = {"label": concept, "id": annotationResult["@id"], "ontology-label": ontologyAbbreviation, "ontology-name": ontologyName, "accession": annotationResult["@id"], "ontology": ontologyId, "details": "", "freeText":originalTerm};
-                                var ontology_record_string = JSON.stringify(ontology_record);
-
-                                storeInCache(annotationResult["@id"], ontology_record_string);
-
-                                valueToAnnotatorResult.results[ontologyAbbreviation].terms.push(ontology_record);
-                            }
-                        }
-                    }
-                }
-            }
-
-            return valuesToSend;
-
-        } else {
-            throw 'Please select spreadsheet cells with content for tagging to work.';
-        }
-    } catch (e) {
-      throw e;
+        storeInCache(url, JSON.stringify(valuesToSend));
+        return valuesToSend;
+        
+    }
+    catch (e) {
+        Logger.log(e);
+        throw e;
     }
 }
 
@@ -177,7 +112,9 @@ function replaceTermWithSelectedValue(term_id) {
         "ontologyId": term["ontology-label"],
         "ontologyVersion": term["ontology"],
         "ontologyDescription": term["ontology-name"],
-        "freeText": term["freeText"]
+        "url": term.url,
+        "obo_id": term["ontology-obo_id"],
+        "freeText": term.label
     }
 
     insertTermInformationInTermSheet(ontologyObject);
@@ -186,35 +123,34 @@ function replaceTermWithSelectedValue(term_id) {
     var sheet = SpreadsheetApp.getActiveSheet();
     var selectedRange = sheet.getActiveSelection();
 
-    // figure out where the source ref and accession columns exist, if they do exist at all. Insertion technique will vary
-    // depending on the file being looked at.
+
     var sourceAndAccessionPositions = getSourceAndAccessionPositionsForTerm(selectedRange.getColumn());
 
     for (var row = selectedRange.getRow(); row <= selectedRange.getLastRow(); row++) {
 
         for (var col = selectedRange.getColumn(); col <= selectedRange.getLastColumn(); col++) {
-            // if the currently selected column is an ISA defined ontology term, then we should insert the source and accession in subsequent
-            // columns and add the ontology source information to the investigation file if it doesn't already exist.
-            // we do a replacement if we have a match with the free text version.
-            if (sheet.getRange(row, col).getValue() == ontologyObject.freeText) {
+            if (sheet.getRange(row, col).getValue().toLowerCase() == ontologyObject.freeText.toLowerCase()) {
                 if (sourceAndAccessionPositions.sourceRef != undefined && sourceAndAccessionPositions.accession != undefined) {
                     insertOntologySourceInformationInInvestigationBlock(ontologyObject);
                     sheet.getRange(row, selectedRange.getColumn()).setValue(ontologyObject.term);
                     sheet.getRange(row, sourceAndAccessionPositions.sourceRef).setValue(ontologyObject.ontologyId);
                     sheet.getRange(row, sourceAndAccessionPositions.accession).setValue(ontologyObject.accession);
-                } else {
-
-            var isDefaultInsertionMechanism = loadPreferences();
-            var selectedColumn = selectedRange.getColumn();
-            var nextColumn = selectedColumn +1;
-            if(!isDefaultInsertionMechanism) {
-              sheet.getRange(row, selectedColumn).setValue(ontologyObject.term);
-              sheet.getRange(row, nextColumn).setValue(ontologyObject.accession);
-            } else {
-              sheet.getRange(row, selectedColumn).setFormula('=HYPERLINK("'+  ontologyObject.accession +'","' + ontologyObject.term + '")')
-            }
+                } 
+                else {
+                    var isDefaultInsertionMechanism = loadPreferences();
+                    var selectedColumn = selectedRange.getColumn();
+                    var nextColumn = selectedColumn +1;
+                
+                    if(!isDefaultInsertionMechanism) {
+                      sheet.getRange(row, selectedColumn).setValue(ontologyObject.term);
+                      sheet.getRange(row, nextColumn).setValue(ontologyObject.url);
+                    } 
+                    else {
+                      sheet.getRange(row, selectedColumn).setFormula('=HYPERLINK("'+  ontologyObject.accession +'","' + ontologyObject.term + '")')
+                    }
                 }
             }
+            
         }
     }
 }

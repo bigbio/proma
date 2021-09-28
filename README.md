@@ -109,7 +109,7 @@ Click on the cell to specify the range, click on the "Insert" button in the sear
 When you insert, a 'Record' sheet will be added automatically. This sheet will have the following column headers:
 ```Parameter Type | Parameter Value | Term Name | Ontology Source | Term URI```. This is how we record your inserts.
 
-An example of a google spreadsheet with such functionality can be viewed here: https://docs.google.com/spreadsheets/d/1kg043sFW2-hkWD7u_0tT2KbG7d0HqftTkULo5kYvJrw/edit#gid=1973647948
+An example of a google spreadsheet with such functionality can be viewed here: https://docs.google.com/spreadsheets/d/1kg043sFW2-hkWD7u_0tT2KbG7d0HqftTkULo5kYvJrw/edit#gid=1680029552
 
  
 

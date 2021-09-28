@@ -29,48 +29,6 @@ To try PROMA, you need to add the extension to your Google spreadsheet. The foll
 </div>
 <br/>
 
-2. Click on 'Get add-ons...' and then search for 'Proma':
-
-<div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_2.png" width="600">
-</div>
-<br/>
-
-You should get the following result:
-
-<div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_3.png" width="600">
-</div>
-<br/>
-
-Here you can click on the image and read more about Proma:
-
-<div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_4.png" width="600">
-</div>
-<br/>
-
-3. To install, click on '+FREE'. You will need to authorise Proma Add-on to access your spreadsheets and to connect to external services:
-
-<div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_5.png" width="600">
-</div>
-<br/>
-
-4. You'll then have the Proma app installed.
-
-<div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_6.png" width="600">
-</div>
-<br/>
-
-You can access it through the 'Add On' menu option.
-
-<div align="center">
-<img src="https://github.com/bigbio/proma/blob/main/figures/figure_readme_7.png" width="600">
-</div>
-<br/>
-
 ## SDRF Annotation
 
 ### Select Template

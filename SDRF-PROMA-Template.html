@@ -225,7 +225,7 @@
 
         .footer {
             text-align: center;
-            position: absolute;
+            position: float;
             width: 242px;
             bottom: 12px;
         }
@@ -444,7 +444,7 @@
 
                                     if(parameter == 'instrument' || parameter == 'cleavage agent details' || parameter == 'label'){
                                       var modification = "NT=" + label + ";AC=" + term["ontology-obo_id"];
-                                      if(ontology_abbr == "MS"){
+                                      if(ontology_abbr == "MS" || ontology_abbr == "PRIDE"){
                                         
                                         html += '<h3><span class="ontology-abbr">' + ontology_abbr + '</span> - <span class="ontology-obo_id">' + term["ontology-obo_id"] + '</span></h3>' +
                                         '<div><ul>'+
